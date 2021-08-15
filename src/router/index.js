@@ -6,6 +6,7 @@ import Login from "../views/Login.vue";
 import Logout from "../views/Logout.vue";
 import PostsIndex from '../views/PostsIndex.vue'
 import BuildsIndex from '../views/BuildsIndex.vue'
+import CreateBuild from '../views/CreateBuild.vue'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
     path: '/Builds',
     name: 'Builds-index',
     component: BuildsIndex
+  },
+  {
+    path: '/Builds/new',
+    name: 'Create-Build',
+    component: CreateBuild
   },
   {
     path: '/about',

@@ -2,11 +2,6 @@
   <div class="home">
     {{ builds }}
     </hr>
-    <div class="item_list">
-      <template v-for="item in items">
-        <img class="image" @error="imageLoadError(item)" v-if="item.display === true" :src=item.url >
-      </template>
-    </div>
     </hr>
     {{ heroes }}
   </div>
@@ -45,10 +40,6 @@ export default {
           item.display = true;
         });
       });
-    },
-    imageLoadError(item) {
-      console.log("Image failed to load");
-      item.display = false;
     },
   },
 };
