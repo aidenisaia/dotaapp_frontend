@@ -1,18 +1,10 @@
 <template>
   <div class="home">
     {{ builds }}
-    </hr>
-    </hr>
-    {{ heroes }}
   </div>
 </template>
 
 <style>
-.item_list {
-  width: 100%;
-  display: inline-block;
-  flex-flow: row nowrap;
-}
 </style>
 
 <script>
@@ -34,11 +26,6 @@ export default {
       axios.get("/builds").then((response) => {
         console.log(response.data);
         this.builds = response.data["builds"];
-        this.items = response.data["items"];
-        this.heroes = response.data["heroes"];
-        this.items.forEach(function (item) {
-          item.display = true;
-        });
       });
     },
   },

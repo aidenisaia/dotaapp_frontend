@@ -10,10 +10,16 @@
     </div>
     <hr>
     <div class="build">
-      <img class="image" :src=this.herochoice.url>
-      <div v-for="item in itemchoices">
-        <img class="image" v-on:click="removeItem(item)":src=item.url>
-      </div>
+      <form v-on:submit.prevent="submit()">
+        <input type="text" v-model="timing" placeholder="Timing">
+        <br>
+        <img class="image" :src=this.herochoice.url>
+        <br>
+        <div class="item_list" v-for="item in itemchoices">
+          <img class="image" v-on:click="removeItem(item)" :src=item.url>
+        </div>
+        <input type="submit" value="Submit" />
+      </form>
     </div>
     <hr>
     <div class="item_list">
@@ -46,6 +52,9 @@ export default {
       items: [],
       herochoice: "",
       itemchoices: [],
+      timing: "",
+      errors: [],
+      newBuildParams: {},
     };
   },
   created: function () {
@@ -77,6 +86,19 @@ export default {
     },
     removeItem: function (item) {
       this.itemchoices.splice(this.itemchoices.indexOf(item), 1);
+    },
+    submit: function () {
+      this.newBuildParams.timing = this.timing;
+      this.newBuildParams.hero_name = this.herochoice.name;
+      this.newBuildParams.itemchoices = this.itemchoices;
+      axios
+        .post("/builds", this.newBuildParams)
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch((error) => {
+          this.errors = error.response.data.errors;
+        });
     },
   },
 };
