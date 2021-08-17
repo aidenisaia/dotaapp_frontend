@@ -62,9 +62,8 @@ export default {
   },
   methods: {
     buildData: function () {
-      axios.get("/items").then((response) => {
+      axios.get("/builds").then((response) => {
         console.log(response.data);
-        this.builds = response.data["builds"];
         this.items = response.data["response_items"];
         this.heroes = response.data["heroes"];
         console.log(response.data["heroes"]);
