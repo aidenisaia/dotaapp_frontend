@@ -15,9 +15,9 @@
         <br>
         <img class="image" :src=this.herochoice.url>
         <br>
-        <div class="item_list" v-for="item in itemchoices">
+        <span class="item_list" v-for="item in itemchoices">
           <img class="image" v-on:click="removeItem(item)" :src=item.url>
-        </div>
+        </span>
         <input type="submit" value="Submit" />
       </form>
     </div>
@@ -65,8 +65,9 @@ export default {
       axios.get("/items").then((response) => {
         console.log(response.data);
         this.builds = response.data["builds"];
-        this.items = response.data["items"];
+        this.items = response.data["response_items"];
         this.heroes = response.data["heroes"];
+        console.log(response.data["heroes"]);
         // this.items.forEach(function (item) {
         //   item.display = true;
         // });
@@ -90,7 +91,9 @@ export default {
     submit: function () {
       this.newBuildParams.timing = this.timing;
       this.newBuildParams.hero_name = this.herochoice.name;
+      this.newBuildParams.hero_url = this.herochoice.url;
       this.newBuildParams.itemchoices = this.itemchoices;
+      console.log(this.newBuildParams);
       axios
         .post("/builds", this.newBuildParams)
         .then((response) => {
