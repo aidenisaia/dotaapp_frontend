@@ -23,11 +23,12 @@
     </div>
     <hr>
     <div class="item_list">
-      <button v-for="(item, index) in items">
+      <button v-for="item in items" v-if=item.display>
         <img class="image"
+          @error="imageLoadError(item)"
           :src=item.url
-          v-on:click="addItemToBuild(item)"  @error="imageLoadError(item)" 
-          v-if=item.url>
+          v-on:click="addItemToBuild(item)"
+          >
       </button>
     </div>
   </div>
@@ -67,9 +68,9 @@ export default {
         this.items = response.data["response_items"];
         this.heroes = response.data["heroes"];
         console.log(response.data["heroes"]);
-        // this.items.forEach(function (item) {
-        //   item.display = true;
-        // });
+        this.items.forEach(function (item) {
+          item.display = true;
+        });
       });
     },
     imageLoadError(item) {
