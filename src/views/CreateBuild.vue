@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <div class="hero_list">
-      <button v-for="hero in heroes">
+      <button v-for="hero in heroes" v-if=hero.display>
         <img class="image"
           :src=hero.url
           v-on:click="addHeroToBuild(hero)"  @error="imageLoadError(hero)" 
-          v-if=hero.url>
+          >
       </button>
     </div>
     <hr>
@@ -71,6 +71,9 @@ export default {
         this.items.forEach(function (item) {
           item.display = true;
         });
+        this.heroes.forEach(function (hero) {
+          hero.display = true;
+        });
       });
     },
     imageLoadError(item) {
@@ -98,6 +101,7 @@ export default {
         .post("/builds", this.newBuildParams)
         .then((response) => {
           console.log(response.data);
+          this.$router.push("/builds");
         })
         .catch((error) => {
           this.errors = error.response.data.errors;
