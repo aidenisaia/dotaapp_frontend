@@ -1,12 +1,12 @@
 <template>
   <div class="home">
     <div class="hero_list">
-      <button v-for="hero in heroes" v-if=hero.display>
+      <span v-for="hero in heroes" v-if=hero.display>
         <img class="image"
           :src=hero.url
           v-on:click="addHeroToBuild(hero)"  @error="imageLoadError(hero)" 
           >
-      </button>
+      </span>
     </div>
     <hr>
     <div class="build">
@@ -23,13 +23,13 @@
     </div>
     <hr>
     <div class="item_list">
-      <button v-for="item in items" v-if=item.display>
+      <span v-for="item in items" v-if=item.display>
         <img class="image"
           @error="imageLoadError(item)"
           :src=item.url
           v-on:click="addItemToBuild(item)"
           >
-      </button>
+      </span>
     </div>
   </div>
 </template>
@@ -40,6 +40,12 @@
   width: 100%;
   display: inline-block;
   flex-flow: row nowrap;
+}
+.image {
+  max-width: 70px;
+}
+.home {
+  padding-top: 6em;
 }
 </style>
 

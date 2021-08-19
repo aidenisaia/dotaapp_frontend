@@ -1,14 +1,32 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link> |
-      <router-link to="/logout">Logout</router-link> |
-      <router-link to="/posts">Posts</router-link> |
-      <router-link to="/builds">Builds</router-link> |
-      <router-link to="/builds/new">New Build</router-link>
-    </div>
+    <header id="header">
+      <h1 id="logo"><a href="/posts">Posts</a></h1>
+      <nav id="nav">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="#">Layouts</a>
+            <ul>
+              <li><a href="left-sidebar.html">Left Sidebar</a></li>
+              <li><a href="right-sidebar.html">Right Sidebar</a></li>
+              <li><a href="no-sidebar.html">No Sidebar</a></li>
+              <li>
+                <a href="#">Submenu</a>
+                <ul>
+                  <li><a href="#">Option 1</a></li>
+                  <li><a href="#">Option 2</a></li>
+                  <li><a href="#">Option 3</a></li>
+                  <li><a href="#">Option 4</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="elements.html">Elements</a></li>
+          <li><a href="#" class="button primary">Sign Up</a></li>
+        </ul>
+      </nav>
+    </header>
     <router-view/>
   </div>
 </template>
