@@ -2,7 +2,7 @@
   <div class="home">
     <div v-for="build in builds">
       <router-link v-bind:to="`/builds/${build.id}`">
-      <p class="build_title">{{ build.timing }} {{ build.hero_name }} build:
+      <p class="build_title grow">{{ build.timing }} {{ build.hero_name }} build:
       {{ users.find(x => x.id === build.user_id).username }}</p>
       </router-link>
       <br>

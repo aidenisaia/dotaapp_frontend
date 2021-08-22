@@ -11,7 +11,7 @@
     <hr>
     <div v-for="post in posts">
       <router-link v-bind:to="`/posts/${post.id}`">
-        <h2>{{ post.title }}</h2>
+        <h2 class="grow">{{ post.title }}</h2>
       </router-link>
       <h3>- {{ users.find(x => x.id === post.user_id).username }}</h3>
       <br>
@@ -27,12 +27,14 @@
         </span>
       </div>
       <br>
-      <div v-for="comment in comments">
+      <div v-show="isShow" v-for="comment in comments">
         <p class="comment" v-if="comment.post_id === post.id">
           {{ comment.body }} - {{ users.find(x => x.id === comment.user_id).username }}
           <br>
         </p>
       </div>
+      <br>
+      <button @click="isShow = !isShow" type="button" class="btn btn-secondary">Comments</button>
       <hr>
     </div>
   </div>
@@ -76,6 +78,7 @@ export default {
       builds: [],
       items: [],
       newPostParams: {},
+      isShow: false,
     };
   },
   created: function () {

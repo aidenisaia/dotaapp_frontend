@@ -2,7 +2,7 @@
   <div class="home">
     <div class="hero_list">
       <span v-for="hero in heroes" v-if=hero.display>
-        <img class="image hvr-grow"
+        <img class="image grow"
           :src=hero.url
           v-on:click="addHeroToBuild(hero)"  @error="imageLoadError(hero)" 
           >
@@ -17,7 +17,7 @@
         <br>
         <!-- <div class="item_list"> -->
         <span v-for="item in itemchoices">
-          <img class="image hvr-grow" v-on:click="removeItem(item)" :src=item.url>
+          <img class="image grow" v-on:click="removeItem(item)" :src=item.url>
         </span>
         <br>
         <br>
@@ -28,7 +28,7 @@
     <hr>
     <div class="item_list">
       <span v-for="item in items" v-if=item.display>
-        <img class="image hvr-grow"
+        <img class="image grow"
           @error="imageLoadError(item)"
           :src=item.url
           v-on:click="addItemToBuild(item)"
@@ -40,20 +40,11 @@
 
 <style>
 /* Grow */
-.hvr-grow {
-  display: inline-block;
-  vertical-align: middle;
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  transition-duration: 0.3s;
-  transition-property: transform;
+.grow {
+  transition: all 0.4s ease-in-out;
 }
 
-.hvr-grow:hover,
-.hvr-grow:focus,
-.hvr-grow:active {
+.grow:hover {
   transform: scale(1.2);
   z-index: 1;
 }
