@@ -7,11 +7,13 @@
       </ul>
       <div>
         <label>Email:</label>
-        <input type="email" v-model="newSessionParams.email" />
+        <input class="input_text" type="email" v-model="newSessionParams.email" />
+        <br>
       </div>
       <div>
         <label>Password:</label>
-        <input type="password" v-model="newSessionParams.password" />
+        <input class="input_text" type="password" v-model="newSessionParams.password" />
+        <br>
       </div>
       <input type="submit" value="Submit" />
     </form>

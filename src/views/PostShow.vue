@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="home">
     <h2>{{ post.title }}</h2>
-    <h3>{{ users.find(x => x.id === post.user_id).username }}</h3>
-    <p>{{ post.body }}</p>
+    <h3>- {{ users.find(x => x.id === post.user_id).username }}</h3>
+    <p class="body">{{ post.body }}</p>
     <div v-for="build in builds" v-if="post.build_id === build.id">
       {{ build.timing }} {{ build.hero_name }} build:
       {{ users.find(x => x.id === build.user_id).username }}
@@ -16,14 +16,13 @@
     </div>
     <br>
     <div v-for="comment in comments">
-      <p v-if="comment.post_id === post.id">
+      <p class="comment" v-if="comment.post_id === post.id">
         {{ comment.body }}
-        <br>
         - {{ users.find(x => x.id === comment.user_id).username }}
       </p>
     </div>
     <form v-on:submit.prevent="submitComment()">
-      <input type="text" v-model="newCommentParams.body" placeholder="Comment" />
+      <input class="input_text" type="text" v-model="newCommentParams.body" placeholder="Comment" />
       <input type="submit" value="Submit" />
     </form>
     <button v-on:click="deletePost()">Delete Post

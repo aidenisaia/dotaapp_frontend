@@ -2,7 +2,7 @@
   <div class="home">
     <div class="hero_list">
       <span v-for="hero in heroes" v-if=hero.display>
-        <img class="image"
+        <img class="image hvr-grow"
           :src=hero.url
           v-on:click="addHeroToBuild(hero)"  @error="imageLoadError(hero)" 
           >
@@ -11,20 +11,24 @@
     <hr>
     <div class="build">
       <form v-on:submit.prevent="submit()">
-        <input type="text" v-model="timing" placeholder="Timing">
+        <input class="input_text" type="text" v-model="timing" placeholder="Timing">
         <br>
         <img class="image" :src=this.herochoice.url>
         <br>
-        <span class="item_list" v-for="item in itemchoices">
-          <img class="image" v-on:click="removeItem(item)" :src=item.url>
+        <!-- <div class="item_list"> -->
+        <span v-for="item in itemchoices">
+          <img class="image hvr-grow" v-on:click="removeItem(item)" :src=item.url>
         </span>
+        <br>
+        <br>
+        <!-- </div> -->
         <input type="submit" value="Submit" />
       </form>
     </div>
     <hr>
     <div class="item_list">
       <span v-for="item in items" v-if=item.display>
-        <img class="image"
+        <img class="image hvr-grow"
           @error="imageLoadError(item)"
           :src=item.url
           v-on:click="addItemToBuild(item)"
@@ -35,17 +39,23 @@
 </template>
 
 <style>
-.item_list,
-.hero_list {
-  width: 100%;
+/* Grow */
+.hvr-grow {
   display: inline-block;
-  flex-flow: row nowrap;
+  vertical-align: middle;
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+  transition-duration: 0.3s;
+  transition-property: transform;
 }
-.image {
-  max-width: 70px;
-}
-.home {
-  padding-top: 6em;
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+  transform: scale(1.2);
+  z-index: 1;
 }
 </style>
 

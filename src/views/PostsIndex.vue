@@ -1,11 +1,10 @@
 <template>
   <div class="home">
+    <h1>New Post</h1>
     <form v-on:submit.prevent="submitPost()">
-      <input type="text" v-model="newPostParams.title" placeholder="Title" />
-      <br>
-      <input type="text" v-model="newPostParams.body" placeholder="Body">
-      <br>
-      <input type="text" v-model="newPostParams.build_id" placeholder="Build Id">
+      <p><input class="input_text" type="text" v-model="newPostParams.title" placeholder="Title" /></p>
+      <p><input class="input_text" type="text" v-model="newPostParams.body" placeholder="Body"></p>
+      <p><input class="input_text" type="text" v-model="newPostParams.build_id" placeholder="Build Id"></p>
       <input type="submit" value="Submit" />
     </form>
     <br>
@@ -14,25 +13,24 @@
       <router-link v-bind:to="`/posts/${post.id}`">
         <h2>{{ post.title }}</h2>
       </router-link>
-      <h3>{{ users.find(x => x.id === post.user_id).username }}</h3>
-      <p>{{ post.body }}</p>
+      <h3>- {{ users.find(x => x.id === post.user_id).username }}</h3>
+      <br>
+      <p class="body">{{ post.body }}</p>
       <div v-for="build in builds" v-if="post.build_id === build.id">
-        {{ build.timing }} {{ build.hero_name }} build:
-        {{ users.find(x => x.id === build.user_id).username }}
-        <br>
+        <p class="build_title">{{ build.timing }} {{ build.hero_name }} build -
+        {{ users.find(x => x.id === build.user_id).username }}</p>
         <p><img :src=build.hero_url></p>
         <span v-for="item in items">
           <span v-if="item.build_id === build.id">
-            <img :src=item.url>
+            <img class="image" :src=item.url>
           </span>
         </span>
       </div>
       <br>
       <div v-for="comment in comments">
-        <p v-if="comment.post_id === post.id">
-          {{ comment.body }}
+        <p class="comment" v-if="comment.post_id === post.id">
+          {{ comment.body }} - {{ users.find(x => x.id === comment.user_id).username }}
           <br>
-          - {{ users.find(x => x.id === comment.user_id).username }}
         </p>
       </div>
       <hr>
@@ -41,11 +39,28 @@
 </template>
 
 <style>
+h1 {
+  font-size: 30px;
+  color: whitesmoke;
+}
+
 h3 {
   margin-top: 0;
+  color: #405a74;
 }
 h2 {
   margin-bottom: 0;
+  color: rgb(151, 217, 255);
+  font-weight: bold;
+}
+.comment {
+  color: #94d4ff;
+  padding-top: 1em;
+}
+.body {
+  color: #34aeff;
+  margin-bottom: 1em;
+  font-size: 14pt;
 }
 </style>
 

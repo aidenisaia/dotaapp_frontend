@@ -7,19 +7,23 @@
       </ul>
       <div>
         <label>Username:</label>
-        <input type="text" v-model="newUserParams.username" />
+        <input class="input_text" type="text" v-model="newUserParams.username" />
+        <br>
       </div>
       <div>
         <label>Email:</label>
-        <input type="email" v-model="newUserParams.email" />
+        <input class="input_text" type="email" v-model="newUserParams.email" />
+        <br>
       </div>
       <div>
         <label>Password:</label>
-        <input type="password" v-model="newUserParams.password" />
+        <input class="input_text" type="password" v-model="newUserParams.password" />
+        <br>
       </div>
       <div>
         <label>Password confirmation:</label>
-        <input type="password" v-model="newUserParams.password_confirmation" />
+        <input class="input_text" type="password" v-model="newUserParams.password_confirmation" />
+        <br>
       </div>
       <input type="submit" value="Submit" />
     </form>

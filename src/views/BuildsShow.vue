@@ -1,12 +1,14 @@
 <template>
-  <div class="build_show">
+  <div class="home">
+    <p class="build_title">
     {{ build.timing }} {{ build.hero_name }} build:
     {{ users.find(x => x.id === build.user_id).username }}
+    </p>
     <br>
-    <p><img :src=build.hero_url></p>
+    <p><img class="image" :src=build.hero_url></p>
     <span v-for="item in items">
       <span v-if="item.build_id === build.id">
-        <img :src=item.url>
+        <img class="image" :src=item.url>
       </span>
     </span>
     <br>

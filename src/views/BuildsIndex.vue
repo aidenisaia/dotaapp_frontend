@@ -1,18 +1,18 @@
 <template>
   <div class="home">
-    <div v-for="build in builds" class="build">
-        {{ build.timing }} {{ build.hero_name }} build:
-        {{ users.find(x => x.id === build.user_id).username }}
-        <br>
-        <router-link v-bind:to="`/builds/${build.id}`">
-        <p><img :src=build.hero_url></p>
-        <span v-for="item in items">
-          <span v-if="item.build_id === build.id">
-            <img :src=item.url>
-          </span>
-        </span>
-        <hr>
+    <div v-for="build in builds">
+      <router-link v-bind:to="`/builds/${build.id}`">
+      <p class="build_title">{{ build.timing }} {{ build.hero_name }} build:
+      {{ users.find(x => x.id === build.user_id).username }}</p>
       </router-link>
+      <br>
+      <p><img class="image" :src=build.hero_url></p>
+      <span v-for="item in items">
+        <span v-if="item.build_id === build.id">
+          <img class="image" :src=item.url>
+        </span>
+      </span>
+      <hr>
     </div>
   </div>
 </template>
@@ -24,6 +24,12 @@
 p {
   padding: 0;
   margin-bottom: 0;
+}
+.build_title {
+  color: rgb(218, 241, 255);
+  font-size: 13pt;
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 </style>
 
