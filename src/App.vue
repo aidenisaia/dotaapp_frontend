@@ -99,4 +99,9 @@ hr {
 .dropdown-menu {
   background-color: #2c3e50;
 }
+
+.error {
+  color: red;
+  font-size: 14pt;
+}
 </style>

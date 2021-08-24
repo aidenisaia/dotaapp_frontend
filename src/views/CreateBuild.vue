@@ -13,15 +13,15 @@
       <form v-on:submit.prevent="submit()">
         <input class="input_text" type="text" v-model="timing" placeholder="Timing">
         <br>
-        <img class="image" :src=this.herochoice.url>
+        <img class="image grow" :src=this.herochoice.url>
         <br>
-        <!-- <div class="item_list"> -->
-        <span v-for="item in itemchoices">
-          <img class="image grow" v-on:click="removeItem(item)" :src=item.url>
-        </span>
-        <br>
-        <br>
-        <!-- </div> -->
+        <div class="item_list">
+          <span v-for="item in itemchoices">
+            <img class="image grow" v-on:click="removeItem(item)" :src=item.url>
+          </span>
+          <br>
+          <br>
+        </div>
         <input type="submit" value="Submit" />
       </form>
     </div>

@@ -4,7 +4,6 @@
     {{ build.timing }} {{ build.hero_name }} build:
     {{ users.find(x => x.id === build.user_id).username }}
     </p>
-    <br>
     <p><img class="image" :src=build.hero_url></p>
     <span v-for="item in items">
       <span v-if="item.build_id === build.id">
@@ -12,7 +11,13 @@
       </span>
     </span>
     <br>
-  <button v-on:click="deleteBuild()">Delete Build</button>
+    <button v-on:click="deleteBuild()">Delete Build</button>
+    <br>
+    <br>
+    <p class="error">{{ error }}</p>
+    <!-- <ul>
+      <li v-for="error in errors" v-bind:key="error">{{ error }}</li>
+    </ul> -->
   </div>
 </template>
 
@@ -27,6 +32,7 @@ export default {
       build: {},
       users: [],
       items: [],
+      error: "",
     };
   },
   created: function () {
@@ -66,7 +72,8 @@ export default {
           this.$router.push("/builds");
         })
         .catch((error) => {
-          this.errors = error.response.data.errors;
+          console.log(error.response);
+          this.error = error.response.request.statusText;
         });
     },
   },

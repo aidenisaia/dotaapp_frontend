@@ -25,8 +25,10 @@
       <input class="input_text" type="text" v-model="newCommentParams.body" placeholder="Comment" />
       <input type="submit" value="Submit" />
     </form>
-    <button v-on:click="deletePost()">Delete Post
-    </button>
+    <button v-on:click="deletePost()">Delete Post</button>
+    <br>
+    <br>
+    <p class="error">{{error}}</p>
     <hr>
   </div>
 </template>
@@ -45,6 +47,8 @@ export default {
       builds: [],
       items: [],
       newCommentParams: {},
+      error: "",
+      errors: [],
     };
   },
   created: function () {
@@ -89,11 +93,11 @@ export default {
         .post("/comments", this.newCommentParams)
         .then((response) => {
           console.log(response.data);
+          location.reload();
         })
-        .catch((error) => {
-          this.errors = error.response.data.errors;
+        .catch(() => {
+          this.error = "Must be logged in";
         });
-      location.reload();
     },
     deletePost: function () {
       axios
@@ -103,7 +107,7 @@ export default {
           this.$router.push("/posts");
         })
         .catch((error) => {
-          this.errors = error.response.data.errors;
+          this.error = error.response.request.statusText;
         });
     },
   },

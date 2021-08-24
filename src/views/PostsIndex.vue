@@ -8,6 +8,7 @@
       <input type="submit" value="Submit" />
     </form>
     <br>
+    <button @click="isShow = !isShow" type="button" class="btn btn-secondary">Toggle Comments</button>
     <hr>
     <div v-for="post in posts">
       <router-link v-bind:to="`/posts/${post.id}`">
@@ -27,14 +28,13 @@
         </span>
       </div>
       <br>
-      <div v-show="isShow" v-for="comment in comments">
-        <p class="comment" v-if="comment.post_id === post.id">
+      <div v-for="comment in comments">
+        <p v-show="isShow" class="comment" v-if="comment.post_id === post.id">
           {{ comment.body }} - {{ users.find(x => x.id === comment.user_id).username }}
           <br>
         </p>
       </div>
       <br>
-      <button @click="isShow = !isShow" type="button" class="btn btn-secondary">Comments</button>
       <hr>
     </div>
   </div>
