@@ -1,8 +1,10 @@
 <template>
   <div class="home">
     <p class="build_title">
-    {{ build.timing }} {{ build.hero_name }} build:
+    {{ build.timing }} {{ build.hero_name }} build -
     {{ users.find(x => x.id === build.user_id).username }}
+    <br>
+      Build ID: {{ build.id }}
     </p>
     <p><img class="image" :src=build.hero_url></p>
     <span v-for="item in items">

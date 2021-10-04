@@ -61,8 +61,10 @@ h2 {
 }
 .body {
   color: #34aeff;
+  margin: 0 auto;
   margin-bottom: 1em;
   font-size: 14pt;
+  max-width: 700px;
 }
 </style>
 
